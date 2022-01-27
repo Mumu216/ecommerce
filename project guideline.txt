@@ -1,0 +1,29 @@
+Ecommerce Project
+===========================
+Product Management - module list
+1. Brand
+2. Category
+3. Product
+4. Product Image
+
+Admin setting module list
+
+5. Division
+6. District
+
+-- Customer Dashboard, profile information update, order status, previous order history pages are need to create
+8. Multi Auth
+Laravel Breeze Install Done
+- Email Verification, All Template Masking with the Admin Template page
+
+
+9.Notification integration
+10.coupon
+11.Product Rating Assignment - size/color
+12.Cart
+13.Payment Gateway Integration
+14.Order Table
+15.Invoice Generate and show
+16.Admin Dashboard Showcasefor the Confirmed
+17.Order Status
+18.Email template Integration for the new order
