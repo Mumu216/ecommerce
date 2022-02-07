@@ -16,6 +16,10 @@ Admin setting module list
 Laravel Breeze Install Done
 - Email Verification, All Template Masking with the Admin Template page
 
+product & product details
+Cart 
+Checkout
+
 
 9.Notification integration
 10.coupon

@@ -7367,3 +7367,20 @@ html.gap-outside .pin-wrapper .sticky-wrapper.sticky-effect-active .sticky-body 
 	padding-left: 25px;
 	padding-right: 25px;
 }
+
+/* Custom Css */
+.user-avater{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-top: -2px;
+}
+
+.order-history .nav-link{
+    text-align: center;
+}
+.order-history .tab-content{
+    border: none;
+    padding:0;
+}

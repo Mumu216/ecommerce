@@ -41,3 +41,10 @@
         ga('send', 'pageview');
     </script>
      -->
+
+     <script type="text/javascript">
+     $(document).ready(function(){
+        $('#productdetails').modal('show')
+     })
+
+     </script>

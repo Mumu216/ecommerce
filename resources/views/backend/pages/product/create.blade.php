@@ -85,6 +85,11 @@
                             </div>
 
                             <div class="form-group">
+                                <label>Short Description</label>
+                                <textarea class="form-control" rows="4" name="short_description"></textarea>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Description</label>
                                 <textarea class="form-control" rows="4" name="description"></textarea>
                             </div>
@@ -94,7 +99,7 @@
                                 <input type="text" name="tags" class="form-control">
                             </div>
 
-                        
+
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">

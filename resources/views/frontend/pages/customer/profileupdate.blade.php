@@ -22,7 +22,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-3">
                                                                 @if ( !empty(Auth::user()->image) )
-                                                                    <img src="" alt="User Image">
+                                                                <img src="{{ asset('backend/img/users/')}}/{{ Auth::user()->image }}" alt="User Image" class="img-fluid">
                                                                 @else
                                                                     <img src="{{ asset('backend/img/users/images2.jpg') }}" alt="User Image" class="img-fluid">
                                                                 @endif
@@ -39,43 +39,43 @@
                                                                         <div class="form-group">
                                                                             <label>Phone</label>
                                                                             <input type="text" name="phone" class="form-control" value="
-                                                                            @if (!empty(Auth::user()->phone)) {{Auth::user()->phone  }} @else {{ old('phone') }} @endif ">
+                                                                            @if (!empty(Auth::user()->phone)) {{Auth::user()->phone  }} @else {{ old('phone') }} @endif">
                                                                         </div>
 
                                                                         <div class="form-group">
                                                                             <label>City</label>
                                                                             <input type="text" name="city" class="form-control" value="
-                                                                            @if (!empty(Auth::user()->city)) Auth::user()->city @else {{ old('city') }} @endif ">
+                                                                            @if (!empty(Auth::user()->city)){{ Auth::user()->city }} @else {{ old('city') }} @endif">
                                                                         </div>
 
                                                                         <div class="form-group">
                                                                             <label>Zip Code</label>
                                                                             <input type="text" name="zipcode" class="form-control" value="
-                                                                            @if (!empty(Auth::user()->zipcode)) Auth::user()->zipcode @else {{ old('zipcode') }} @endif ">
+                                                                            @if (!empty(Auth::user()->zipcode)){{ Auth::user()->zipcode }}@else {{ old('zipcode') }} @endif">
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-lg-6">
                                                                         <div class="form-group">
                                                                             <label>Email Address</label>
-                                                                            <input type="email" name="email" class="form-control" required="required" value="{{ Auth::user()->email }}">
+                                                                            <input type="email" name="email" class="form-control" required="required" value="{{ Auth::user()->email }}" disabled>
                                                                         </div>
 
                                                                         <div class="form-group">
                                                                             <label>Address</label>
                                                                             <input type="text" name="address" class="form-control" value="
-                                                                            @if (!empty(Auth::user()->address)) Auth::user()->address @else {{ old('address') }} @endif " >
+                                                                            @if (!empty(Auth::user()->address)) {{Auth::user()->address}} @else {{ old('address') }} @endif">
                                                                         </div>
 
                                                                         <div class="form-group">
                                                                             <label>Country</label>
                                                                             <input type="text" name="country" class="form-control" value="
-                                                                            @if (!empty(Auth::user()->country)) Auth::user()->country @else {{ old('country') }} @endif "  >
+                                                                            @if (!empty(Auth::user()->country)) {{ Auth::user()->country}} @else {{ old('country') }} @endif">
                                                                         </div>
 
                                                                         <div class="form-group">
                                                                             <label>Profile Picture</label>
-                                                                            <input type="file" name="image" class="form-control-file" >
+                                                                            <input type="file" name="image" class="form-control-file">
                                                                         </div>
                                                                     </div>
                                                                 </div>

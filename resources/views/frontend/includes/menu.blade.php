@@ -33,16 +33,15 @@
                                     <li class="nav-item dropdown nav-item-left-border d-none d-sm-block">
                                         <a class="nav-link" href="#" role="button" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-
                                             @if( Auth::check())
-                                               {{ Auth::user()->name }}
+                                            {{ Auth::user()->name }}
                                                <i class="fas fa-angle-down"></i>
                                             @else
                                               <a href="{{ route('customer-login') }}"> Login  / Register</a>
                                             @endif
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownLanguage">
-                                            <a class="dropdown-item" href="#">Order History</a>
+                                            <a class="dropdown-item" href="{{ route('order-history') }}">Order History</a>
                                             <a class="dropdown-item" href="{{ route('customer-profile') }}"> My Profile</a>
 
                                             <form method="POST" action="{{ route('logout') }}">

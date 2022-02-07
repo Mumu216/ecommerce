@@ -97,6 +97,11 @@
                             </div>
 
                             <div class="form-group">
+                                <label>Short Description</label>
+                                <textarea class="form-control" rows="4" name="short_description">{{ $product->short_description }}</textarea>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Description</label>
                                 <textarea class="form-control" rows="4" name="description">{{ $product->description }}</textarea>
                             </div>

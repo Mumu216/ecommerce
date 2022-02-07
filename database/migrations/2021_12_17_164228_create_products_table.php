@@ -17,7 +17,8 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('title')->unique();
             $table->string('slug');
-            $table->text('description');
+            $table->text('short_description')->nullable();
+            $table->text('description')->nullable();
             $table->integer('brand_id');
             $table->integer('category_id');
             $table->integer('quantity')->default(5);

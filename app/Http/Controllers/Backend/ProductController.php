@@ -47,17 +47,18 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = new Product();
-        $product->title           = $request->title;
-        $product->slug            = Str::slug($request->title);
-        $product->description     = $request->description;
-        $product->brand_id        = $request->brand_id;
-        $product->category_id     = $request->category_id;
-        $product->quantity        = $request->quantity;
-        $product->regular_price   = $request->regular_price;
-        $product->offer_price     = $request->offer_price;
-        $product->is_featured     = $request->is_featured;
-        $product->status          = $request->status;
-        $product->tags            = $request->tags;
+        $product->title                 = $request->title;
+        $product->slug                  = Str::slug($request->title);
+        $product->short_description     = $request->short_description;
+        $product->description           = $request->description;
+        $product->brand_id              = $request->brand_id;
+        $product->category_id           = $request->category_id;
+        $product->quantity              = $request->quantity;
+        $product->regular_price         = $request->regular_price;
+        $product->offer_price           = $request->offer_price;
+        $product->is_featured           = $request->is_featured;
+        $product->status                = $request->status;
+        $product->tags                  = $request->tags;
         $product->save();
 
 
@@ -122,17 +123,18 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::find($id);
-        $product->title           = $request->title;
-        $product->slug            = Str::slug($request->title);
-        $product->description     = $request->description;
-        $product->brand_id        = $request->brand_id;
-        $product->category_id     = $request->category_id;
-        $product->quantity        = $request->quantity;
-        $product->regular_price   = $request->regular_price;
-        $product->offer_price     = $request->offer_price;
-        $product->is_featured     = $request->is_featured;
-        $product->status          = $request->status;
-        $product->tags            = $request->tags;
+        $product->title                 = $request->title;
+        $product->slug                  = Str::slug($request->title);
+        $product->short_description     = $request->short_description;
+        $product->description           = $request->description;
+        $product->brand_id              = $request->brand_id;
+        $product->category_id           = $request->category_id;
+        $product->quantity              = $request->quantity;
+        $product->regular_price         = $request->regular_price;
+        $product->offer_price           = $request->offer_price;
+        $product->is_featured           = $request->is_featured;
+        $product->status                = $request->status;
+        $product->tags                  = $request->tags;
         $product->save();
 
 

@@ -10,9 +10,7 @@ use Intervention\Image\Facades\Image;
 use Auth;
 use File;
 
-
-
-class CustomerController extends Controller
+class OrderManagementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +19,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('frontend.pages.customer.profile');
+        return view('frontend.pages.customer.orderhistory');
     }
 
     /**
@@ -29,15 +27,9 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-        $user = User::find($id);
-        if(!is_null( $user))
-        {
-
-            return view('frontend.pages.customer.profileupdate', compact('user'));
-        }
-
+        //
     }
 
     /**
@@ -46,37 +38,10 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        $user= User::find($id);
-        $user->name          = $request->name;
-       // $user->email         = $request->email;
-        $user->phone         = $request->phone;
-        $user->address       = $request->address;
-        $user->city          = $request->city;
-        $user->country       = $request->country;
-        $user->zipcode       = $request->zipcode;
-
-          // brand image
-
-          if($request->image)
-          {
-              // Existing image
-              if(File::exists('backend/img/users/'  .  $user->image) ){
-                  File::delete('backend/img/users/'  . $user->image);
-              }
-              // upload new image
-              $image = $request->file('image');
-              $img = time() . '.' . $image->getClientOriginalExtension();
-              $location = public_path('backend/img/users/' . $img);
-              Image::make($image)->save($location);
-              $user->image = $img;
-
-          }
-          $user->save();
-          return redirect()->route('customer-profile');
-
- }
+        //
+    }
 
     /**
      * Display the specified resource.

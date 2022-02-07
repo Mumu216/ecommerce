@@ -17,15 +17,15 @@
 								<div class="col-lg-6">
 
 									<div class="owl-carousel owl-theme" data-plugin-options="{'items': 1, 'margin': 10}">
+                                        @php $i=1 @endphp
+                                        @foreach ( $productDetails->images as $image)
+                                        @if( $i<=3)
 										<div>
-											<img alt="" height="300" class="img-fluid" src="{{ asset('frontend/img/products/product-grey-7.jpg') }}">
+                                            <img src="{{ asset('backend/img/products/'  . $image->image ) }}"   alt="" height="300" class="img-fluid">
 										</div>
-										<div>
-											<img alt="" height="300" class="img-fluid" src="{{ asset('frontend/img/products/product-grey-7-2.jpg') }}">
-										</div>
-										<div>
-											<img alt="" height="300" class="img-fluid" src="{{ asset('frontend/img/products/product-grey-7-3.jpg') }}">
-										</div>
+                                        @endif
+                                        @php $i++ @endphp
+                                        @endforeach
 									</div>
 
 								</div>
@@ -34,8 +34,9 @@
 
 									<div class="summary entry-summary">
 
-										<h1 class="mb-0 font-weight-bold text-7">Blue Ladies Handbag</h1>
+										<h1 class="mb-0 font-weight-bold text-7">{{ $productDetails->title }}</h1>
 
+                                        <!-- Rating-->
 										<div class="pb-0 clearfix">
 											<div title="Rated 3 out of 5" class="float-left">
 												<input type="text" class="d-none" value="3" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}">
@@ -46,13 +47,26 @@
 											</div>
 										</div>
 
+
 										<p class="price">
-											<span class="amount">$22</span>
+                                            @if($productDetails->is_featured==0)
+                                            <span class="amount text-dark font-weight-semibold">৳{{$productDetails->regular_price}}</span>
+                                           @elseif($productDetails->is_featured==1)
+                                              <del><span class="amount">৳{{ $productDetails->regular_price }}</span></del>
+                                              <span class="amount text-dark font-weight-semibold">৳{{ $productDetails->offer_price }}</span>
+                                            @endif
 										</p>
 
-										<p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus nibh sed elimttis adipiscing. Fusce in hendrerit purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus nibh sed elimttis adipiscing. Fusce in hendrerit purus. </p>
+										<p class="">{{ $productDetails->quantity }} </p>
+										<p class="">
+                                            @if( $productDetails->quantity > 0 )
+                                             <strong>Quantity:</strong>  {{ $productDetails->quantity }} Pcs</p>
+                                             @elseif( $productDetails->quantity <=0)
+                                                <span style="color: #ff0000;"><strong>Out Of Stock</strong></span>
+                                            @endif
 
-										<form enctype="multipart/form-data" method="post" class="cart">
+
+										<form  method="post" class="cart"  enctype="multipart/form-data">
 											<div class="quantity quantity-lg">
 												<input type="button" class="minus" value="-">
 												<input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
@@ -62,7 +76,7 @@
 										</form>
 
 										<div class="product-meta">
-											<span class="posted-in">Categories: <a rel="tag" href="#">Accessories</a>, <a rel="tag" href="#">Bags</a>.</span>
+											<span class="posted-in">Categories: <a rel="tag" href="#">{{ $productDetails->category->title  }}</a>.</span>
 										</div>
 
 									</div>
@@ -81,8 +95,7 @@
 										</ul>
 										<div class="tab-content p-0">
 											<div class="tab-pane p-4 active" id="productDescription">
-												<p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sagittis, massa fringilla consequat blandit, mauris ligula porta nisi, non tristique enim sapien vel nisl. Suspendisse vestibulum lobortis dapibus. </p>
-												<p class="m-0">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sagittis, massa fringilla consequat blandit, mauris ligula porta nisi, non tristique enim sapien vel nisl. Suspendisse vestibulum lobortis dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+												<p>{{ $productDetails->description }} </p>
 											</div>
 											<div class="tab-pane p-4" id="productInfo">
 												<table class="table m-0">

@@ -43,8 +43,8 @@
                                 <td>
                                     <!-- to initial the loop-->
                                   @php $p=1; @endphp
-                                  @foreach( $product->images as $image)
-                                   @if ( $p > 0 )
+                                   @foreach( $product->images as $image)
+                                     @if ( $p > 0 )
                                     <img src="{{ asset('backend/img/products/'  . $image->image ) }}" width="50">
                                     @endif
                                     @php $p--;  @endphp
@@ -56,7 +56,7 @@
                                 <td>{{ $product->regular_price }}</td>
                                 <td>
                                     @if( !empty( $product->offer_price))
-                                      $product->offer_price
+                                      {{ $product->offer_price}}
                                     @else
                                       -N/A-
                                     @endif

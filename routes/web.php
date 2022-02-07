@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\Frontend\PagesController@homepage')->name('homepage');
 Route::get('/all-products', 'App\Http\Controllers\Frontend\PagesController@allProducts')->name('allProducts');
-Route::get('/product-details', 'App\Http\Controllers\Frontend\PagesController@productDetails')->name('productDetails');
+Route::get('{slug}/product-details/', 'App\Http\Controllers\Frontend\PagesController@productDetails')->name('productDetails');
+Route::get('primarycategory/{id}','App\Http\Controllers\Frontend\PagesController@pcategory')->name('pcategory.show');
+Route::get('category/{slug}','App\Http\Controllers\Frontend\PagesController@category')->name('category.show');
 Route::get('/search', 'App\Http\Controllers\Frontend\PagesController@search')->name('search');
 
 
@@ -27,10 +29,14 @@ Route::get('/cart', 'App\Http\Controllers\Frontend\PagesController@cart')->name(
 Route::get('/checkout', 'App\Http\Controllers\Frontend\PagesController@checkout')->name('checkout');
 Route::get('/customer-login', 'App\Http\Controllers\Frontend\PagesController@login')->name('customer-login');
 
+// customer profile
 Route::group(['prefix' => 'customer'], function(){
    Route::get('/my-profile', 'App\Http\Controllers\Frontend\CustomerController@index')->name('customer-profile')->middleware('auth','verified');
    Route::get('/profile-update/{id}', 'App\Http\Controllers\Frontend\CustomerController@create')->name('profile.update')->middleware('auth');
    Route::post('/profile-update/{id}', 'App\Http\Controllers\Frontend\CustomerController@store')->name('profile.store')->middleware('auth');
+
+   // order management
+   Route::get('/order-history', 'App\Http\Controllers\Frontend\OrderManagementController@index')->name('order-history');
 
 
 });
@@ -52,7 +58,7 @@ Route::group(['prefix' => 'customer'], function(){
 
 // Admin Group
 Route::group(['prefix' => 'admin'], function(){
-    Route::get('/dashboard', 'App\Http\Controllers\Backend\PagesController@dashboard')->name('admin.dashboard')->middleware('auth', 'verified');
+    Route::get('/dashboard', 'App\Http\Controllers\Backend\PagesController@dashboard')->name('admin.dashboard')->middleware('auth', 'verified','role');
 
 
 

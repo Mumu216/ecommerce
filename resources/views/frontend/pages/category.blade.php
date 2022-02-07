@@ -13,6 +13,9 @@
 
                 <div class="masonry-loader masonry-loader-showing">
                     <div class="row products product-thumb-info-list" data-plugin-masonry data-plugin-options="{'layoutMode': 'fitRows'}">
+                        @php
+                            $products = $category->products()->get();
+                        @endphp
 
                         @if( $products->count() > 0)
                         @foreach($products as $product)
@@ -61,7 +64,7 @@
                            We Have Found Some Product.
                         @else
                            <div class="alert alert-info">
-                              Sorry!!! No Product Found in your search keyword - <strong>{{ $search }}</strong>
+                              Sorry!!! No Product Found in this Category. Please Check Back later.
                            </div>
                         @endif
 
@@ -85,4 +88,3 @@
 
 </div>
 @endsection
-

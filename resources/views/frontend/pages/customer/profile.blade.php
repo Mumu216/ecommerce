@@ -21,7 +21,7 @@
                           <div class="row">
                               <div class="col-lg-3">
                                   @if ( !empty(Auth::user()->image) )
-                                    <img src="" alt="User Image">
+                                    <img src="{{ asset('backend/img/users/')}}/{{ Auth::user()->image }}" alt="User Image" class="img-fluid">
                                   @else
                                     <img src="{{ asset('backend/img/users/images2.jpg') }}" alt="User Image" class="img-fluid">
                                   @endif
