@@ -16,16 +16,31 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'App\Http\Controllers\Frontend\PagesController@homepage')->name('homepage');
+
+// All Product and Details Page
+
 Route::get('/all-products', 'App\Http\Controllers\Frontend\PagesController@allProducts')->name('allProducts');
 Route::get('{slug}/product-details/', 'App\Http\Controllers\Frontend\PagesController@productDetails')->name('productDetails');
+// Category and Sub Category wise product showcasing
 Route::get('primarycategory/{id}','App\Http\Controllers\Frontend\PagesController@pcategory')->name('pcategory.show');
 Route::get('category/{slug}','App\Http\Controllers\Frontend\PagesController@category')->name('category.show');
+
+// search product
 Route::get('/search', 'App\Http\Controllers\Frontend\PagesController@search')->name('search');
 
+//Add to cart
+
+Route::group(['prefix' => 'cart'], function(){
+    Route::get('/', 'App\Http\Controllers\Frontend\CartController@index')->name('cart.items');
+    Route::post('/store', 'App\Http\Controllers\Frontend\CartController@store')->name('cart.store');
+    Route::post('/update/{id}', 'App\Http\Controllers\Frontend\CartController@update')->name('cart.update');
+    Route::post('/destroy/{id}', 'App\Http\Controllers\Frontend\CartController@destroy')->name('cart.destroy');
 
 
 
-Route::get('/cart', 'App\Http\Controllers\Frontend\PagesController@cart')->name('cart');
+});
+
+
 Route::get('/checkout', 'App\Http\Controllers\Frontend\PagesController@checkout')->name('checkout');
 Route::get('/customer-login', 'App\Http\Controllers\Frontend\PagesController@login')->name('customer-login');
 
@@ -38,8 +53,23 @@ Route::group(['prefix' => 'customer'], function(){
    // order management
    Route::get('/order-history', 'App\Http\Controllers\Frontend\OrderManagementController@index')->name('order-history');
 
-
 });
+
+
+// SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+//Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+//Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
 
 
 

@@ -11,7 +11,7 @@
 						<div class="col">
 							<div class="featured-box featured-box-primary text-left mt-2">
 								<div class="box-content">
-									<form method="post" action="">
+
 										<table class="shop_table cart">
 											<thead>
 												<tr>
@@ -36,106 +36,79 @@
 												</tr>
 											</thead>
 											<tbody>
+
+                                                @if($cartItems->count() <=0)
+                                                  <div class="alert alert-info">
+                                                    Sorry!!! No Item added Into Your Cart. Please Add Your Product First.
+                                                  </div>
+                                                @endif
+
+                                                @php $total_price = 0; @endphp
+                                                @foreach( $cartItems as $item)
 												<tr class="cart_table_item">
+                                                    {{-- item remove --}}
 													<td class="product-remove">
-														<a title="Remove this item" class="remove" href="#">
+                                                        <form action="{{ route('cart.destroy', $item->id) }}" method="POST">
+                                                            @csrf
+														<button type="submit" title="Remove this item" class="remove item-remove" >
 															<i class="fas fa-times"></i>
-														</a>
+                                                        </button>
+                                                    </form>
 													</td>
+
 													<td class="product-thumbnail">
-														<a href="shop-product-sidebar-left.html">
-															<img width="100" height="100" alt="" class="img-fluid" src="{{ asset('frontend/img/products/product-grey-1.jpg') }}">
-														</a>
+														@if($item->product->images->count() > 0)
+														<img width="100" height="100" class="img-fluid" src="{{ asset('backend/img/products/' . $item->product->images->first()->image)}}"  alt="{{ $item->product->title }}">
+														@endif
 													</td>
 													<td class="product-name">
-														<a href="shop-product-sidebar-left.html">Photo Camera</a>
+														<a href="{{route('productDetails', $item->product->slug)}}">{{ $item->product->title }}</a>
 													</td>
 													<td class="product-price">
-														<span class="amount">$299</span>
+														<span class="amount">
+                                                            @if(!is_null($item->product->offer_price))
+                                                             {{ $item->product->offer_price }}
+                                                             @else
+                                                               {{ $item->product->regular_price }}
+                                                            @endif
+                                                        </span>
 													</td>
+
+                                                    <form action="{{route('cart.update', $item->id)}}" method="POST" class="cart">
+                                                        @csrf
 													<td class="product-quantity">
-														<form enctype="multipart/form-data" method="post" class="cart">
-															<div class="quantity">
+                                                        <div class="quantity">
 																<input type="button" class="minus" value="-">
-																<input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+																<input type="text" class="input-text qty text" title="Qty" value="{{ $item->quantity }}" name="quantity" min="1" step="1">
 																<input type="button" class="plus" value="+">
-															</div>
-														</form>
+                                                        </div>
 													</td>
 													<td class="product-subtotal">
-														<span class="amount">$299</span>
+														<span class="amount">
+                                                            @if(!is_null($item->product->offer_price))
+                                                            ৳{{ $total_price = $item->quantity  *  $item->product->offer_price }} BDT
+                                                            @else
+                                                            ৳{{ $total_price = $item->quantity  *  $item->product->regular_price }} BDT
+                                                            @endif
+                                                        </span>
 													</td>
+                                                    <td>
+                                                        <div class="actions-continue">
+                                                            <input type="submit" value="Update" name="update_cart" class="btn btn-lg btn-light pr-4 pl-4 text-2 font-weight-semibold text-uppercase cart-update-btn">
+                                                        </div>
+                                                    </td>
+                                                </form>
 												</tr>
-												<tr class="cart_table_item">
-													<td class="product-remove">
-														<a title="Remove this item" class="remove" href="#">
-															<i class="fas fa-times"></i>
-														</a>
-													</td>
-													<td class="product-thumbnail">
-														<a href="shop-product-sidebar-left.html">
-															<img width="100" height="100" alt="" class="img-fluid" src="{{ asset('frontend/img/products/product-grey-2.jpg') }}">
-														</a>
-													</td>
-													<td class="product-name">
-														<a href="shop-product-sidebar-left.html">Golf Bag</a>
-													</td>
-													<td class="product-price">
-														<span class="amount">$72</span>
-													</td>
-													<td class="product-quantity">
-														<form enctype="multipart/form-data" method="post" class="cart">
-															<div class="quantity">
-																<input type="button" class="minus" value="-">
-																<input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-																<input type="button" class="plus" value="+">
-															</div>
-														</form>
-													</td>
-													<td class="product-subtotal">
-														<span class="amount">$72</span>
-													</td>
-												</tr>
-												<tr class="cart_table_item">
-													<td class="product-remove">
-														<a title="Remove this item" class="remove" href="#">
-															<i class="fas fa-times"></i>
-														</a>
-													</td>
-													<td class="product-thumbnail">
-														<a href="shop-product-sidebar-left.html">
-															<img width="100" height="100" alt="" class="img-fluid" src="{{ asset('frontend/img/products/product-grey-3.jpg') }}">
-														</a>
-													</td>
-													<td class="product-name">
-														<a href="shop-product-sidebar-left.html">Workout</a>
-													</td>
-													<td class="product-price">
-														<span class="amount">$60</span>
-													</td>
-													<td class="product-quantity">
-														<form enctype="multipart/form-data" method="post" class="cart">
-															<div class="quantity">
-																<input type="button" class="minus" value="-">
-																<input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-																<input type="button" class="plus" value="+">
-															</div>
-														</form>
-													</td>
-													<td class="product-subtotal">
-														<span class="amount">$60</span>
-													</td>
-												</tr>
-												<tr>
-													<td class="actions" colspan="6">
+                                                @endforeach
+                                                {{-- <tr>
+                                                    <td class="actions" colspan="6">
 														<div class="actions-continue">
 															<input type="submit" value="Update Cart" name="update_cart" class="btn btn-xl btn-light pr-4 pl-4 text-2 font-weight-semibold text-uppercase">
 														</div>
 													</td>
-												</tr>
+                                                </tr> --}}
 											</tbody>
 										</table>
-									</form>
 								</div>
 							</div>
 						</div>
@@ -144,40 +117,9 @@
 
 				<div class="featured-boxes">
 					<div class="row">
-						<div class="col-sm-6">
-							<div class="featured-box featured-box-primary text-left mt-3 mt-lg-4">
-								<div class="box-content">
-									<h4 class="color-primary font-weight-semibold text-4 text-uppercase mb-3">Calculate Shipping</h4>
 
-									<form action="/" id="frmCalculateShipping" method="post">
-										<div class="form-row">
-											<div class="form-group col">
-												<label class="font-weight-bold text-dark">Country</label>
-												<select class="form-control">
-													<option value="">Select a country</option>
-												</select>
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="form-group col-lg-6">
-												<label class="font-weight-bold text-dark">State</label>
-												<input type="text" value="" class="form-control">
-											</div>
-											<div class="form-group col-lg-6">
-												<label class="font-weight-bold text-dark">Zip Code</label>
-												<input type="text" value="" class="form-control">
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="form-group col">
-												<input type="submit" value="Update Totals" class="btn btn-xl btn-light pr-4 pl-4 text-2 font-weight-semibold text-uppercase" data-loading-text="Loading...">
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6">
+
+						<div class="col-sm-6 offset-sm-6">
 							<div class="featured-box featured-box-primary text-left mt-3 mt-lg-4">
 								<div class="box-content">
 									<h4 class="color-primary font-weight-semibold text-4 text-uppercase mb-3">Cart Totals</h4>
@@ -188,7 +130,7 @@
 													<strong class="text-dark">Cart Subtotal</strong>
 												</th>
 												<td>
-													<strong class="text-dark"><span class="amount">$431</span></strong>
+													<strong class="text-dark"><span class="amount">{{ App\Models\Cart::totalPrice() }}</span></strong>
 												</td>
 											</tr>
 											<tr class="shipping">
@@ -204,7 +146,7 @@
 													<strong class="text-dark">Order Total</strong>
 												</th>
 												<td>
-													<strong class="text-dark"><span class="amount">$431</span></strong>
+													<strong class="text-dark"><span class="amount">{{ App\Models\Cart::totalPrice() }}</span></strong>
 												</td>
 											</tr>
 										</tbody>

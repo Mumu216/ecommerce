@@ -499,7 +499,7 @@ Theme Version:	8.0.0
 }
 
 .shop table.cart .product-name {
-	width: 60%;
+	width: 45%;
 }
 
 .shop table.cart .quantity {
@@ -714,4 +714,8 @@ Theme Version:	8.0.0
 	.shop table.cart th.product-price, .shop table.cart td.product-price, .shop table.cart th.product-quantity, .shop table.cart td.product-quantity, .shop table.cart .product-thumbnail {
 		display: none;
 	}
+
+}
+.cart-update-btn{
+    padding: 10px 10px !important;
 }

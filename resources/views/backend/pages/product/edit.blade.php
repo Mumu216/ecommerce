@@ -75,19 +75,19 @@
                             <label>Product Offer Price</label>
                               <input type="text" name="offer_price" class="form-control"  autocomplete="off" placeholder="Enter Product Offer Price" value="{{$product->offer_price }}">
                         </div>
+
+                        <div class="form-group">
+                            <label>Featured Product</label>
+                              <select class="form-control" name="is_featured">
+                                <option value="0">Please Select The Featured Status</option>
+                                <option value="1" @if($product->is_featured == 1) selected @endif >Featured</option>
+                                <option value="0"  @if($product->is_featured == 0) selected @endif >Reguler Product</option>
+                               </select>
+                           </div>
                      </div>
 
                      <div class="col-lg-6">
-                         <div class="form-group">
-                             <label>Featured Product</label>
-                               <select class="form-control" name="is_featured">
-                                 <option value="0">Please Select The Featured Status</option>
-                                 <option value="1" @if($product->is_featured == 1) selected @endif >Featured</option>
-                                 <option value="0"  @if($product->is_featured == 0) selected @endif >Reguler Product</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
+                          <div class="form-group">
                                 <label>Status</label>
                                   <select class="form-control" name="status">
                                     <option value="1">Please Select The Status</option>

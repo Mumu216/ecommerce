@@ -89,30 +89,59 @@
                                 <a href="#" class="header-nav-features-toggle">
                                     <img src="{{ asset('frontend/img/icons/icon-cart-big.svg') }}" height="34" alt="" class="header-nav-top-icon-img">
                                     <span class="cart-info">
-                                        <span class="cart-qty">1</span>
+                                        <span class="cart-qty">{{ App\Models\Cart::totalItems() }}</span>
                                     </span>
                                 </a>
                                 <div class="header-nav-features-dropdown" id="headerTopCartDropdown">
                                     <ol class="mini-products-list">
+                                          {{-- All the items added in the cart --}}
+                                         @foreach(App\Models\Cart::orderBy('id','desc')->get() as $item)
                                         <li class="item">
+                                            @if($item->product->images->count() > 0)
+                                            <a href="#" title="Camera X1000" class="product-image"><img src="{{ asset('backend/img/products/' . $item->product->images->first()->image) }}" alt="{{ $item->product->title }}"></a>
+                                            @endif
+                                            <div class="product-details">
+                                                <p class="product-name">
+                                                    <a href="#">{{ $item->product->title }}</a>
+                                                </p>
+                                                <p class="qty-price">
+                                                     {{ $item->quantity }}X
+                                                     <span class="price">
+                                                        @if(!is_null($item->product->offer_price))
+                                                        ৳{{ $item->product->offer_price}} BDT
+                                                        @else
+                                                        ৳{{ $item->product->regular_price}} BDT
+                                                        @endif
+                                                     </span>
+                                                </p>
+                                                <form action="{{ route('cart.destroy', $item->id) }}" method="POST">
+                                                    @csrf
+                                                <button type="submit" title="Remove This Item" class="btn-remove"><i class="fas fa-times"></i></button>
+                                            </form>
+                                            </div>
+                                        </li>
+                                        @endforeach
+
+                                        {{-- <li class="item">
                                             <a href="#" title="Camera X1000" class="product-image"><img src="{{ asset('frontend/img/products/product-1.jpg') }}" alt="Camera X1000"></a>
                                             <div class="product-details">
                                                 <p class="product-name">
-                                                    <a href="#">Camera X1000 </a>
+                                                    <a href="#">{{ $item->product->title }}</a>
                                                 </p>
                                                 <p class="qty-price">
                                                      1X <span class="price">$890</span>
                                                 </p>
                                                 <a href="#" title="Remove This Item" class="btn-remove"><i class="fas fa-times"></i></a>
                                             </div>
-                                        </li>
+                                        </li> --}}
+
                                     </ol>
                                     <div class="totals">
                                         <span class="label">Total:</span>
-                                        <span class="price-total"><span class="price">$890</span></span>
+                                        <span class="price-total"><span class="price">{{ App\Models\Cart::totalPrice() }}</span></span>
                                     </div>
                                     <div class="actions">
-                                        <a class="btn btn-dark" href="#">View Cart</a>
+                                        <a class="btn btn-dark" href="{{ route('cart.items') }}">View Cart</a>
                                         <a class="btn btn-primary" href="#">Checkout</a>
                                     </div>
                                 </div>
@@ -147,7 +176,7 @@
                                             </a>
                                         </li>
                                           <li class="dropdown">
-                                             <a class="dropdown-item dropdown-toggle" href="{{ route('cart') }}">
+                                             <a class="dropdown-item dropdown-toggle" href="{{ route('cart.items') }}">
                                                   Cart Page
                                               </a>
                                          </li>
