@@ -19,7 +19,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cartItems = Cart::orderBy('id','desc')->get();
+        $cartItems = Cart::orderBy('id','desc')->where('order_id' , NULL)->get();
         return view('frontend.pages.cart', compact('cartItems'));
     }
 
@@ -42,14 +42,19 @@ class CartController extends Controller
     public function store(Request $request)
     {
         if (Auth::check() ){
-            $cart = Cart::where('user_id', Auth::id())->where('product_id', $request->product_id )->first();
+            $cart = Cart::where('user_id', Auth::id())->where('product_id', $request->product_id )->where('order_id', NULL)->first();
         }
         else{
 
-            $cart = Cart::where('ip_address', request()->ip() )->where('product_id', $request->product_id )->first();
+            $cart = Cart::where('ip_address', request()->ip() )->where('product_id', $request->product_id )->where('order_id', NULL)->first();
       }
       if( !is_null($cart)){
           $cart->increment('quantity');
+          $notification = array(
+             'message' => 'Another Quantity Added',
+             'alert-type' => 'info'
+        );
+          return redirect()->back()->with($notification);
       }
       else{
           $cart = new Cart();
@@ -57,11 +62,19 @@ class CartController extends Controller
           {
               $cart->user_id = Auth::id();
           }
-          $cart->ip_address = $request->ip();
-          $cart->product_id = $request->product_id;
-          $cart->save();
+          $cart->ip_address   = $request->ip();
+          $cart->product_id   = $request->product_id;
+          $cart->quantity     = $request->quantity;
+          $cart->unit_price   = $request->quantity;
 
-          return redirect()->back();
+
+          $cart->save();
+          $notification = array(
+            'message' => 'Item added Successfully',
+            'alert-type' => 'success'
+        );
+
+          return redirect()->back()->with($notification);
         }
     }
 
@@ -123,10 +136,14 @@ class CartController extends Controller
         if(!is_null($cart))
         {
             $cart->delete();
+            $notification = array(
+                'message' => 'Item deleted from the cart',
+                'alert-type' => 'error'
+           );
         }
         else{
             return redirect()->back();
         }
-        return redirect()->back();
+        return redirect()->back()->with($notification);
     }
 }

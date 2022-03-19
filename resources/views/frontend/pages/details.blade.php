@@ -57,7 +57,7 @@
                                             @endif
 										</p>
 
-										<p class="">{{ $productDetails->quantity }} </p>
+										<p class="">{{ $productDetails->short_description }} </p>
 										<p class="">
                                             @if( $productDetails->quantity > 0 )
                                              <strong>Quantity:</strong>  {{ $productDetails->quantity }} Pcs</p>
@@ -66,13 +66,15 @@
                                             @endif
 
 
-										<form  method="post" class="cart"  enctype="multipart/form-data">
+										<form  action="{{ route('cart.store') }}" method="POST" class="cart" >
+                                            @csrf
 											<div class="quantity quantity-lg">
 												<input type="button" class="minus" value="-">
 												<input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
 												<input type="button" class="plus" value="+">
 											</div>
-											<button href="#" class="btn btn-primary btn-modern text-uppercase">Add to cart</button>
+                                            <input type="hidden" name="product_id" value="{{ $productDetails->id }}">
+											<input type="submit" class="btn btn-primary btn-modern text-uppercase" value="Add to cart">
 										</form>
 
 										<div class="product-meta">

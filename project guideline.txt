@@ -8,26 +8,32 @@ Product Management - module list
 
 Admin setting module list
 
-5. Division
-6. District
+5. Division              -Done
+6. District              - Done
+7. Frond end Integrate   - Done
+8. Multi Auth - Laravel Breeze Install   - Done
+All Template Masking with the Admin Template Pages - Done
+- Email Verification and SMTP Setup  - Done
+9. User Profile Update Validation - Done
+-- Customer Dashboard, Profile information update, order status, previous order history pages are neet to create - Done
+10. Category wise product page, -> Done
+Search based on Title, Description, Tag -> Done
+12. Cart -> Done
+13. Payment Gateway Integration -> Done
+14. Order Table & Data Strong -> Done
 
--- Customer Dashboard, profile information update, order status, previous order history pages are need to create
-8. Multi Auth
-Laravel Breeze Install Done
-- Email Verification, All Template Masking with the Admin Template page
-
-product & product details
-Cart 
-Checkout
 
 
-9.Notification integration
-10.coupon
-11.Product Rating Assignment - size/color
-12.Cart
-13.Payment Gateway Integration
-14.Order Table
-15.Invoice Generate and show
-16.Admin Dashboard Showcasefor the Confirmed
-17.Order Status
-18.Email template Integration for the new order
+15. Home page Product Decoration
+Admin Order Received / Update Notification with order Manegement
+16. Checkout
+17.Customer Order Page -> Product and Product Details
+18.Admin Order Received / Update Notification with order Manegement
+19. Product Rating Assignment - size / color
+20. Notification integration
+21. Invoise generate and show
+22. Coupon
+23. Email Template Integration for new order 
+
+
+

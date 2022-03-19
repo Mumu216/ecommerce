@@ -20,6 +20,55 @@
     <script src="{{ asset('backend/js/map.shiftworker.js') }}"></script>
     <script src="{{ asset('backend/js/ResizeSensor.js') }}"></script>
     <script src="{{ asset('backend/js/dashboard.js') }}"></script>
+
+    {{-- toastr  --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+      <!-- toastr alert-type design -->
+    <script type="text/javascript">
+    
+    @if( Session::has('message') )
+    var type = "{{ Session::get('alert-type','info')}}";
+
+    switch(type){
+        case 'info':
+          toastr.info("{{ Session::get('message') }}");
+        break:
+
+        case 'warning':
+          toastr.warning("{{ Session::get('message') }}");
+        break;
+
+        case 'success':
+          toastr.success("{{ Session::get('message') }}");
+        break;
+
+        case 'error':
+          toastr.error("{{ Session::get('message') }}");
+        break;
+    }
+    @endif
+    </script>
+    <!-- copy from the toastr JQuery lib -->
+    <script type="text/javascript">
+     toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": false,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+        }
+    </script>
+
     <script>
       $(function(){
         'use strict'

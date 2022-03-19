@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SslCommerzPaymentController;
 
 
 /*
@@ -57,16 +58,16 @@ Route::group(['prefix' => 'customer'], function(){
 
 
 // SSLCOMMERZ Start
-Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
-//Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
 
-Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
-//Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+Route::post('/pay', [SslCommerzPaymentController::class, 'index'])->name('make_payment');
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
 
-Route::post('/success', [SslCommerzPaymentController::class, 'success']);
-Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
-Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+Route::post('/success', [SslCommerzPaymentController::class, 'success'])->name('payment_success');
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail'])->name('payment_failed');
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel'])->name('payment_cancel');
 
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
@@ -157,6 +158,17 @@ Route::group(['prefix' => '/district'], function(){
     Route::get('/edit/{id}','App\Http\Controllers\Backend\DistrictController@edit')->middleware('auth')->name('district.edit');
     Route::post('/update/{id}','App\Http\Controllers\Backend\DistrictController@update')->middleware('auth')->name('district.update');
     Route::post('/destroy/{id}','App\Http\Controllers\Backend\DistrictController@destroy')->middleware('auth')->name('district.destroy');
+
+});
+
+
+    Route::group(['prefix' => '/order-management'], function(){
+
+        Route::get('/manage', 'App\Http\Controllers\Backend\OrderController@index')->middleware('auth')->name('order.manage');
+        Route::get('/order-details/{id}', 'App\Http\Controllers\Backend\OrderController@show')->middleware('auth')->name('order.details');
+        Route::get('/edit/{id}','App\Http\Controllers\Backend\OrderController@edit')->middleware('auth')->name('order.edit');
+        Route::post('/update/{id}','App\Http\Controllers\Backend\OrderController@update')->middleware('auth')->name('order.update');
+        Route::post('/destroy/{id}','App\Http\Controllers\Backend\OrderController@destroy')->middleware('auth')->name('order.destroy');
 
 
 });

@@ -16,6 +16,7 @@ class Cart extends Model
     public $fillable= [
        'product_id',
        'quantity',
+       'unit_price',
        'order_id',
        'user_id',
        'ip_address'
@@ -35,7 +36,7 @@ class Cart extends Model
 
     // Total Cart Functionality
 
-    public function totalCarts(){
+    public static function totalCarts(){
         if( Auth::check() ){
             $carts = Cart::where('user_id', Auth::id())->where('order_id', NULL)->get();
         }

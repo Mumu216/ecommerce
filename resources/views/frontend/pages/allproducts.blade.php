@@ -28,6 +28,8 @@
                                 <form action="{{ route('cart.store') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="hidden" name="quantity" value="{{ $product->quantity }}">
+
                                     <input type="submit" name="addcart" value="Add to Cart" class="add-to-cart-product bg-color-primary">
                             </form>
                                 <!-- product image-->

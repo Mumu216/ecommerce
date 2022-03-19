@@ -14,122 +14,103 @@
 
 					<div class="row">
 						<div class="col-lg-9">
-
-							<div class="accordion accordion-modern" id="accordion">
-								<div class="card card-default">
-									<div class="card-header">
-										<h4 class="card-title m-0">
-											<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-												Billing Address
-											</a>
-										</h4>
-									</div>
-									<div id="collapseOne" class="collapse show">
-										<div class="card-body">
-											<form action="/" id="frmBillingAddress" method="post">
-												<div class="form-row">
-													<div class="form-group col">
-														<label class="font-weight-bold text-dark text-2">Country</label>
-														<select class="form-control">
-															<option value="">Select a country</option>
-														</select>
-													</div>
-												</div>
-												<div class="form-row">
-													<div class="form-group col-lg-6">
-														<label class="font-weight-bold text-dark text-2">First Name</label>
-														<input type="text" value="" class="form-control">
-													</div>
-													<div class="form-group col-lg-6">
-														<label class="font-weight-bold text-dark text-2">Last Name</label>
-														<input type="text" value="" class="form-control">
-													</div>
-												</div>
-												<div class="form-row">
-													<div class="form-group col">
-														<label class="font-weight-bold text-dark text-2">Company Name</label>
-														<input type="text" value="" class="form-control">
-													</div>
-												</div>
-												<div class="form-row">
-													<div class="form-group col">
-														<label class="font-weight-bold text-dark text-2">Address </label>
-														<input type="text" value="" class="form-control">
-													</div>
-												</div>
-												<div class="form-row">
-													<div class="form-group col">
-														<label class="font-weight-bold text-dark text-2">City </label>
-														<input type="text" value="" class="form-control">
-													</div>
-												</div>
-												<div class="form-row">
-													<div class="form-group col">
-														<input type="submit" value="Continue" class="btn btn-xl btn-light pr-4 pl-4 text-2 font-weight-semibold text-uppercase float-right mb-2" data-loading-text="Loading...">
-													</div>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
+                            <div class="accordion accordion-modern" id="accordion">
+                                <form action="{{ route('make_payment') }}" method="POST" id="frmShippingAddress" class="needs-validation">
+                                    <input type="hidden" value="{{ csrf_token() }}"  name="_token" >
 								<div class="card card-default">
 									<div class="card-header">
 										<h4 class="card-title m-0">
 											<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-												Shipping Address
+												Fillup the Shipping Address to complete The Order
 											</a>
 										</h4>
 									</div>
-									<div id="collapseTwo" class="collapse">
+									<div id="collapseTwo" class="collapse show">
 										<div class="card-body">
-											<form action="/" id="frmShippingAddress" method="post">
-												<div class="form-row">
-													<div class="col">
-														<div class="custom-control custom-checkbox pb-3">
-															<input type="checkbox" class="custom-control-input" id="shipbillingaddress">
-															<label class="custom-control-label" for="shipbillingaddress">Ship to billing address?</label>
-														</div>
-													</div>
-												</div>
-												<div class="form-row">
-													<div class="form-group col">
-														<label class="font-weight-bold text-dark text-2">Country</label>
-														<select class="form-control">
-															<option value="">Select a country</option>
-														</select>
-													</div>
-												</div>
 												<div class="form-row">
 													<div class="form-group col-lg-6">
 														<label class="font-weight-bold text-dark text-2">First Name</label>
-														<input type="text" value="" class="form-control">
+														<input type="text" value="" name="first_name" class="form-control">
 													</div>
 													<div class="form-group col-lg-6">
 														<label class="font-weight-bold text-dark text-2">Last Name</label>
-														<input type="text" value="" class="form-control">
+														<input type="text" value="" name="last_name" class="form-control">
 													</div>
 												</div>
+
 												<div class="form-row">
 													<div class="form-group col">
-														<label class="font-weight-bold text-dark text-2">Company Name</label>
-														<input type="text" value="" class="form-control">
+														<label class="font-weight-bold text-dark text-2">Email Address</label>
+														<input type="text" value="" name="email" class="form-control">
+													</div>
+
+                                                    <div class="form-group col">
+														<label class="font-weight-bold text-dark text-2">Phone</label>
+														<input type="text" value="" name="phone" class="form-control">
 													</div>
 												</div>
-												<div class="form-row">
+
+                                                <div class="form-row">
 													<div class="form-group col">
-														<label class="font-weight-bold text-dark text-2">Address </label>
-														<input type="text" value="" class="form-control">
+														<label class="font-weight-bold text-dark text-2">Shipping Address [Flat No, House No, Road No]</label>
+														<input type="text" value="" name="address" class="form-control">
 													</div>
 												</div>
+
+                                                <div class="form-row">
+                                                    <div class="form-group col">
+														<label class="font-weight-bold text-dark text-2">Division</label>
+														 <select class="form-control" name="division_id">
+                                                          <option>Please Select Your Division</option>
+                                                          @foreach($divisions as $division)
+                                                            <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                                          @endforeach
+                                                        </select>
+													</div>
+                                                </div>
+
+                                                <div class="form-row">
+                                                    <div class="form-group col">
+														<label class="font-weight-bold text-dark text-2">District</label>
+														 <select class="form-control" name="district_id">
+                                                           <option>Please Select Your District</option>
+                                                           @foreach( $districts as $district)
+                                                             <option value="{{ $district->id }}">{{ $district->district_name}}</option>
+                                                           @endforeach
+                                                        </select>
+													</div>
+                                                </div>
+
+                                                <div class="form-row">
+                                                    <div class="form-group col">
+														<label class="font-weight-bold text-dark text-2">Postal Code</label>
+                                                        <input type="text" value="" name="post_code" class="form-control" required="required">
+													</div>
+                                                </div>
+
+
 												<div class="form-row">
 													<div class="form-group col">
-														<label class="font-weight-bold text-dark text-2">City </label>
-														<input type="text" value="" class="form-control">
+														<label class="font-weight-bold text-dark text-2">Country</label>
+														<input type="text" value="Bangladesh" name="country" class="form-control">
 													</div>
 												</div>
+
+                                                <div class="form-row">
+													<div class="form-group col">
+														<label class="font-weight-bold text-dark text-2">Message [If any]</label>
+														  <textarea class="form-control" name="message" rows="3" placeholder="Write Your Message to us ......"></textarea>
+													</div>
+												</div>
+
+                                                @if(Auth::check())
+												 <input type="hidden" name="user_id" value="{{Auth::user()->id}}" >
+                                                 @endif
+
 												<div class="form-row">
 													<div class="form-group col">
-														<input type="submit" value="Continue" class="btn btn-xl btn-light pr-4 pl-4 text-2 font-weight-semibold text-uppercase float-right mb-2" data-loading-text="Loading...">
+                                                        <input type="hidden" name="amount" value="{{ App\Models\Cart::totalPrice() }}">
+                                                        <input type="submit" value="Place Order" name="proceed" class="btn btn-primary btn-modern text-uppercase mt-5 mb-5 mb-lg-0">
 													</div>
 												</div>
 											</form>
@@ -146,7 +127,14 @@
 									</div>
 									<div id="collapseThree" class="collapse">
 										<div class="card-body">
-											<table class="shop_table cart">
+
+                                            @if($cartItems->count() <=0)
+                                            <div class="alert alert-info">
+                                              Sorry!!! No Item added Into Your Cart. Please Add Your Product First.
+                                            </div>
+                                            @else
+
+                                            <table class="shop_table cart">
 												<thead>
 													<tr>
 														<th class="product-thumbnail">
@@ -167,65 +155,51 @@
 													</tr>
 												</thead>
 												<tbody>
+                                                    @php $total_price = 0; @endphp
+                                                    @foreach( $cartItems as $item)
 													<tr class="cart_table_item">
 														<td class="product-thumbnail">
-															<a href="shop-product-sidebar-left.html">
-																<img width="100" height="100" alt="" class="img-fluid" src="{{ asset('frontend/img/products/product-grey-1.jpg') }}">
+															<a href="">
+                                                                @if($item->product->images->count() > 0)
+														          <img width="100" height="100" class="img-fluid" src="{{ asset('backend/img/products/' . $item->product->images->first()->image)}}"  alt="{{ $item->product->title }}">
+                                                                  @endif
 															</a>
 														</td>
 														<td class="product-name">
-															<a href="shop-product-sidebar-left.html">Photo Camera</a>
+                                                            <a href="{{route('productDetails', $item->product->slug)}}">{{ $item->product->title }}</a>
 														</td>
 														<td class="product-price">
-															<span class="amount">$299</span>
+															<span class="amount">
+                                                                @if(!is_null($item->product->offer_price))
+                                                                {{ $item->product->offer_price }}
+                                                                @else
+                                                                  {{ $item->product->regular_price }}
+                                                               @endif</span>
 														</td>
 														<td class="product-quantity">
-															1
-														</td>
+                                                            <div class="quantity">
+																<input type="button" class="minus" value="-">
+																<input type="text" class="input-text qty text" title="Qty" value="{{ $item->quantity }}" name="quantity" min="1" step="1">
+																<input type="button" class="plus" value="+">
+                                                        </div>
+                                                    </td>
 														<td class="product-subtotal">
-															<span class="amount">$299</span>
+															<span class="amount">
+                                                                @if(!is_null($item->product->offer_price))
+                                                                ৳{{ $total_price = $item->quantity  *  $item->product->offer_price }} BDT
+                                                                @else
+                                                                ৳{{ $total_price = $item->quantity  *  $item->product->regular_price }} BDT
+                                                                @endif
+                                                            </span>
 														</td>
 													</tr>
-													<tr class="cart_table_item">
-														<td class="product-thumbnail">
-															<a href="shop-product-sidebar-left.html">
-																<img width="100" height="100" alt="" class="img-fluid" src="{{ asset('frontend/img/products/product-grey-2.jpg') }}">
-															</a>
-														</td>
-														<td class="product-name">
-															<a href="shop-product-sidebar-left.html">Golf Bag</a>
-														</td>
-														<td class="product-price">
-															<span class="amount">$72</span>
-														</td>
-														<td class="product-quantity">
-															1
-														</td>
-														<td class="product-subtotal">
-															<span class="amount">$72</span>
-														</td>
-													</tr>
-													<tr class="cart_table_item">
-														<td class="product-thumbnail">
-															<a href="shop-product-sidebar-left.html">
-																<img width="100" height="100" alt="" class="img-fluid" src="{{ asset('frontend/img/products/product-grey-3.jpg') }}">
-															</a>
-														</td>
-														<td class="product-name">
-															<a href="shop-product-sidebar-left.html">Workout</a>
-														</td>
-														<td class="product-price">
-															<span class="amount">$60</span>
-														</td>
-														<td class="product-quantity">
-															1
-														</td>
-														<td class="product-subtotal">
-															<span class="amount">$60</span>
-														</td>
-													</tr>
+                                                    @endforeach
+
 												</tbody>
 											</table>
+                                          @endif
+
+
 
 											<hr class="solid my-5">
 
@@ -237,7 +211,7 @@
 															<strong class="text-dark">Cart Subtotal</strong>
 														</th>
 														<td>
-															<strong class="text-dark"><span class="amount">$431</span></strong>
+															<strong class="text-dark"><span class="amount">{{ App\Models\Cart::totalPrice() }}</span></strong>
 														</td>
 													</tr>
 													<tr class="shipping">
@@ -253,7 +227,7 @@
 															<strong class="text-dark">Order Total</strong>
 														</th>
 														<td>
-															<strong class="text-dark"><span class="amount">$431</span></strong>
+															<strong class="text-dark"><span class="amount">{{ App\Models\Cart::totalPrice() }}</span></strong>
 														</td>
 													</tr>
 												</tbody>
@@ -295,6 +269,7 @@
 							</div>
 
 							<div class="actions-continue">
+                                <input type="hidden" name="amount" value="{{ App\Models\Cart::totalPrice() }}">
 								<input type="submit" value="Place Order" name="proceed" class="btn btn-primary btn-modern text-uppercase mt-5 mb-5 mb-lg-0">
 							</div>
 
@@ -308,7 +283,7 @@
 											<strong class="text-dark">Cart Subtotal</strong>
 										</th>
 										<td>
-											<strong class="text-dark"><span class="amount">$431</span></strong>
+											<strong class="text-dark"><span class="amount"></span></strong>
 										</td>
 									</tr>
 									<tr class="shipping">
@@ -324,7 +299,7 @@
 											<strong class="text-dark">Order Total</strong>
 										</th>
 										<td>
-											<strong class="text-dark"><span class="amount">$431</span></strong>
+											<strong class="text-dark"><span class="amount"></span></strong>
 										</td>
 									</tr>
 								</tbody>
@@ -336,4 +311,6 @@
 
 			</div>
 @endsection
+
+
 

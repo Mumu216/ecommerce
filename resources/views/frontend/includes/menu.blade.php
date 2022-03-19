@@ -34,6 +34,12 @@
                                         <a class="nav-link" href="#" role="button" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                                             @if( Auth::check())
+                                            @if( !is_null(Auth::user()->image) )
+                                            <img src="{{ asset('backend/img/users/')}}/{{ Auth::user()->image }}" alt="User Image" class="user-avater">
+                                          @else
+                                           <img src="{{ asset('backend/img/users/images1.jpg') }}" class="user-avater" alt="English" />
+                                         @endif
+
                                             {{ Auth::user()->name }}
                                                <i class="fas fa-angle-down"></i>
                                             @else
@@ -95,7 +101,7 @@
                                 <div class="header-nav-features-dropdown" id="headerTopCartDropdown">
                                     <ol class="mini-products-list">
                                           {{-- All the items added in the cart --}}
-                                         @foreach(App\Models\Cart::orderBy('id','desc')->get() as $item)
+                                         @foreach(App\Models\Cart::orderBy('id','desc')->where('order_id' , NULL)->get() as $item)
                                         <li class="item">
                                             @if($item->product->images->count() > 0)
                                             <a href="#" title="Camera X1000" class="product-image"><img src="{{ asset('backend/img/products/' . $item->product->images->first()->image) }}" alt="{{ $item->product->title }}"></a>
@@ -142,7 +148,7 @@
                                     </div>
                                     <div class="actions">
                                         <a class="btn btn-dark" href="{{ route('cart.items') }}">View Cart</a>
-                                        <a class="btn btn-primary" href="#">Checkout</a>
+                                        <a class="btn btn-primary" href="{{ route('checkout') }}">Checkout</a>
                                     </div>
                                 </div>
                             </div>

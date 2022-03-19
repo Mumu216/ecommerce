@@ -11,11 +11,15 @@
 <link rel="stylesheet" href="{{ asset('frontend/vendor/magnific-popup/magnific-popup.min.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/vendor/bootstrap-star-rating/css/star-rating.min.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.css') }}">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+
 <!-- Theme CSS -->
 <link rel="stylesheet" href="{{ asset('frontend/css/theme.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/theme-elements.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/theme-blog.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/theme-shop.css') }}">
+
 
 <!-- Demo CSS -->
 

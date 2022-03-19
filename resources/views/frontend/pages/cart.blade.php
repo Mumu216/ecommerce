@@ -130,7 +130,7 @@
 													<strong class="text-dark">Cart Subtotal</strong>
 												</th>
 												<td>
-													<strong class="text-dark"><span class="amount">{{ App\Models\Cart::totalPrice() }}</span></strong>
+													<strong class="text-dark"><span class="amount">{{ App\Models\Cart::totalPrice()}}</span></strong>
 												</td>
 											</tr>
 											<tr class="shipping">
@@ -161,7 +161,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="actions-continue">
-							<button type="submit" class="btn btn-primary btn-modern text-uppercase">Proceed to Checkout <i class="fas fa-angle-right ml-1"></i></button>
+							<a href="{{ route('checkout') }}" class="btn btn-primary btn-modern text-uppercase">Proceed to Checkout <i class="fas fa-angle-right ml-1"></i><a>
 						</div>
 					</div>
 				</div>

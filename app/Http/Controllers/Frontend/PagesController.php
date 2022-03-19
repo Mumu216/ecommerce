@@ -5,9 +5,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Cart;
+use App\Models\Order;
+use App\Models\User;
+use App\Models\Division;
+use App\Models\District;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Auth;
 
 
 
@@ -123,7 +129,10 @@ class PagesController extends Controller
      */
     public function checkout()
     {
-     return view('frontend.pages.checkout');
+        $divisions = Division::orderBy('priority', 'asc')->get();
+        $districts = District::orderBy('district_name', 'asc')->get();
+        $cartItems = Cart::orderBy('id','desc')->get();
+         return view('frontend.pages.checkout', compact('divisions','districts','cartItems'));
     }
 
     /**
