@@ -18,6 +18,9 @@
               <div class="row">
                  <div class="col-lg-12">
 
+                    @if( $orders->count() == 0)
+                     <div class="alert alert-primary"> Sorry!!! No Order Record Found. </div>
+                    @else
                     <table class="table table-bordered table-striped mg-b-0">
                         <thead class="thead-colored thead-dark">
                             <tr>
@@ -91,6 +94,10 @@
 
                         </tbody>
                 </table>
+
+                @endif
+
+
 
 
                 </div>

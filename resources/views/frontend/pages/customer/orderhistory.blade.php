@@ -41,44 +41,50 @@
                                                                       <th scope="col">Items</th>
                                                                       <th scope="col">Total Amount</th>
                                                                       <th scope="col">Status</th>
+                                                                      <th scope="col">Invoice</th>
+
                                                                     </tr>
                                                                   </thead>
                                                                   <tbody>
+                                                                      @php $i = 1; @endphp
+                                                                      @foreach($orders as $order)
                                                                     <tr>
-                                                                      <th scope="row">1</th>
-                                                                      <td># id 56766</td>
-                                                                      <td>15th January, 2022</td>
+                                                                      <th scope="row">{{ $i }}</th>
+                                                                      <td># id {{ $order->id }}</td>
+                                                                      <td>{{ $order->updated_at }}</td>
                                                                       <td>
-                                                                        <span class="badge badge-info" data-toggle="modal" data-target="#productdetails"> Products</span>
+                                                                        <span class="badge badge-info">Items</span>
                                                                       </td>
-                                                                      <td>$700</td>
+                                                                      <td>{{ $order->amount }}</td>
                                                                       <td>
-                                                                          <span class="badge badge-success">Completed</span>
+                                                                          @if($order->status == 0)
+                                                                            <span class="badge badge-primary">In Processing</span>
+                                                                          @elseif($order->status == 1)
+                                                                            <span class="badge badge-warning">Hold</span>
+                                                                          @elseif($order->status == 2)
+                                                                            <span class="badge badge-success">Completed</span>
+                                                                          @elseif($order->status == 3)
+                                                                            <span class="badge badge-danger">Canceled</span>
+                                                                          @endif
+
+
+
                                                                          <!-- <span class="badge badge-primary">In Progress</span>
                                                                           <span class="badge badge-danger">Canceled</span>
                                                                           <span class="badge badge-warning">Hold</span>
                                                                           <span class="badge badge-success">Returned</span> -->
                                                                           </td>
 
-<!-- product details start -->
-<div class="modal fade" id="productdetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Your Items</h5>
-
-        </div>
-        <div class="modal-body">
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-                                                                    </tr>
+                                                                          <td>
+                                                                              <a href="{{ route('order-invoice', $order->id) }} target="_blank">Click to see Invoice</a>
+                                                                          </td>
+                                                                        </tr>
+                                                                        @php $i++; @endphp
+                                                                 @endforeach
                                                                 </tbody>
                                                             </table>
+
+<!-- product details start -- >
                                                             <!-- table start-->
 
                                                         </div>

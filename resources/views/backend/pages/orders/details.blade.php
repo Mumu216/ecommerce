@@ -23,13 +23,12 @@
                          <p><span>Phone No: </span>{{ $orderDetails->phone }}</p>
                         </div>
                         </div>
-
-
                         <div class="col-lg-4">
                             <div class="order-summery-box">
                                 <h3 class="br-section-label">Transaction Details</h3>
                                  <p><span>Amount Total:</span> {{ $orderDetails->amount}} {{ $orderDetails->currency }}</p>
                                  <p><span>Transaction ID:</span> {{ $orderDetails->transaction_id}}</p>
+                                 <h3 class="change-order-status-title">Order Status <a href="{{ route('order.edit', $orderDetails->id) }}"><i class="fas fa-edit"></i>Update Status</a></h3>
                                  <p><span>Status:</span>
                                   @if($orderDetails->status == 0)
                                     <span class="badge badge-info">In Processing</span>
@@ -43,7 +42,6 @@
                                 </p>
                             </div>
                            </div>
-
 
 
                     <div class="col-lg-4">
@@ -67,14 +65,16 @@
                    <h3 class="br-section-label">Order Items List</h3>
 
                    <!-- product list start -->
-                   <table class="table">
+                   <table class="table table-stripped">
                     <thead>
                       <tr>
                         <th scope="col">#Sl</th>
                         <th scope="col">Image</th>
                         <th scope="col">Product Title</th>
                         <th scope="col">Quantity</th>
+                        <th scope="col">Unit Price</th>
                         <th scope="col">Price</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -92,14 +92,11 @@
                              @endforeach
                         </td>
                         <td>{{ $productDetails->product->title }}</td>
-                        <td>{{ $productDetails->quantity }}</td>
+                        <td>{{ $productDetails->quantity }}Pcs</td>
                         <td>
-                            @if( !is_null($productDetails->product->offer_price))
-                              {{ $productDetails->product->offer_price }}
-                            @else
-                              {{ $productDetails->product->regular_price }}
-                            @endif
+                            ৳ {{ $productDetails->unit_price }} BDT
                         </td>
+                        <td> ৳ {{ $productDetails->quantity * $productDetails->unit_price }} BDT</td>
                       </tr>
                        @php $i++; @endphp
                        @endforeach
@@ -111,6 +108,26 @@
             </div>
 
          </div>
+
+          <div class="row">
+            <div class="col-lg-6 product-list-heading message-note">
+                <div class="order-product-summery-box">
+                    <div class="alert alert-primary text-center">
+                        <h5>Customer Message</h5>
+                        {{ $orderDetails->message }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 product-list-heading message-note">
+                <div class="order-product-summery-box">
+                    <div class="alert alert-primary text-center">
+                        <h5>Admin Note</h5>
+                        {{ $orderDetails->admin_note }}
+                    </div>
+                </div>
+            </div>
+        </div>
      </div>
  </div>
 

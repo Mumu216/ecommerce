@@ -30,7 +30,7 @@
 												<div class="form-row">
 													<div class="form-group col-lg-6">
 														<label class="font-weight-bold text-dark text-2">First Name</label>
-														<input type="text" value="" name="first_name" class="form-control">
+														<input type="text" value="@if( Auth::check()) {{ Auth::user()->name }} @endif" name="first_name" class="form-control">
 													</div>
 													<div class="form-group col-lg-6">
 														<label class="font-weight-bold text-dark text-2">Last Name</label>
@@ -41,19 +41,19 @@
 												<div class="form-row">
 													<div class="form-group col">
 														<label class="font-weight-bold text-dark text-2">Email Address</label>
-														<input type="text" value="" name="email" class="form-control">
+														<input type="text" value="@if( Auth::check()) {{ Auth::user()->email }} @endif" name="email" class="form-control">
 													</div>
 
                                                     <div class="form-group col">
 														<label class="font-weight-bold text-dark text-2">Phone</label>
-														<input type="text" value="" name="phone" class="form-control">
+														<input type="text" value="@if( Auth::check()) {{ Auth::user()->phone }} @endif" name="phone" class="form-control">
 													</div>
 												</div>
 
                                                 <div class="form-row">
 													<div class="form-group col">
 														<label class="font-weight-bold text-dark text-2">Shipping Address [Flat No, House No, Road No]</label>
-														<input type="text" value="" name="address" class="form-control">
+														<input type="text" value="@if( Auth::check()) {{ Auth::user()->address }} @endif" name="address" class="form-control">
 													</div>
 												</div>
 
@@ -84,7 +84,7 @@
                                                 <div class="form-row">
                                                     <div class="form-group col">
 														<label class="font-weight-bold text-dark text-2">Postal Code</label>
-                                                        <input type="text" value="" name="post_code" class="form-control" required="required">
+                                                        <input type="text" value="@if( Auth::check()) {{ Auth::user()->zip_code }} @endif" name="post_code" class="form-control" required="required">
 													</div>
                                                 </div>
 
@@ -92,7 +92,7 @@
 												<div class="form-row">
 													<div class="form-group col">
 														<label class="font-weight-bold text-dark text-2">Country</label>
-														<input type="text" value="Bangladesh" name="country" class="form-control">
+														<input type="text" value="@if( Auth::check()) {{ Auth::user()->country }} @endif" name="country" class="form-control">
 													</div>
 												</div>
 

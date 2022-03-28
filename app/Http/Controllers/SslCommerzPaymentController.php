@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\Cart;
@@ -203,6 +203,8 @@ class SslCommerzPaymentController extends Controller
                 $update_product = DB::table('orders')
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Processing']);
+
+                   // $update_products->save();
 
                 echo "<br >Transaction is successfully Completed";
             } else {

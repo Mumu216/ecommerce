@@ -53,6 +53,8 @@ Route::group(['prefix' => 'customer'], function(){
 
    // order management
    Route::get('/order-history', 'App\Http\Controllers\Frontend\OrderManagementController@index')->name('order-history');
+   Route::get('/invoice/{id}', 'App\Http\Controllers\Frontend\OrderManagementController@invoice')->name('order-invoice');
+
 
 });
 

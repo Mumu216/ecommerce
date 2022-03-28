@@ -73,6 +73,15 @@
 												<input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
 												<input type="button" class="plus" value="+">
 											</div>
+
+                                            @if($productDetails->is_featured == 0)
+                                             <input type="hidden" name="unit_price" value="{{ $productDetails->regular_price }}">
+                                             @elseif($productDetails->is_featured == 1)
+                                             <input type="hidden" name="unit_price" value="{{ $productDetails->offer_price }}">
+                                             @endif
+
+
+
                                             <input type="hidden" name="product_id" value="{{ $productDetails->id }}">
 											<input type="submit" class="btn btn-primary btn-modern text-uppercase" value="Add to cart">
 										</form>

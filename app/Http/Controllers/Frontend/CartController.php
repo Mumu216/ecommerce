@@ -65,9 +65,9 @@ class CartController extends Controller
           $cart->ip_address   = $request->ip();
           $cart->product_id   = $request->product_id;
           $cart->quantity     = $request->quantity;
-          $cart->unit_price   = $request->quantity;
+          $cart->unit_price   = $request->unit_price;
 
-
+        //  dd($cart); exit();
           $cart->save();
           $notification = array(
             'message' => 'Item added Successfully',

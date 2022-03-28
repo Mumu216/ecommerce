@@ -28,7 +28,12 @@
                                 <form action="{{ route('cart.store') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    <input type="hidden" name="quantity" value="{{ $product->quantity }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    @if($product->is_featured == 0)
+                                    <input type="hidden" name="unit_price" value="{{ $product->regular_price }}">
+                                    @elseif($product->is_featured == 1)
+                                    <input type="hidden" name="unit_price" value="{{ $product->offer_price }}">
+                                    @endif
 
                                     <input type="submit" name="addcart" value="Add to Cart" class="add-to-cart-product bg-color-primary">
                             </form>

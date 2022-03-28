@@ -76,7 +76,12 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $orderDetails = Order::find($id);
+        $divisions = Division::orderBy('priority', 'asc')->get();
+        $districts = District::orderBy('district_name' ,'asc')->get();
+         if(!is_null( $orderDetails)){
+             return view('backend.pages.orders.update' , compact('orderDetails','divisions','districts'));
+         }
     }
 
     /**
@@ -88,8 +93,24 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+         $orderDetailsUpdate = Order::find($id);
+
+         $orderDetailsUpdate->cus_name         = $request->first_name;
+         $orderDetailsUpdate->last_name        = $request->last_name;
+         $orderDetailsUpdate->phone            = $request->phone;
+         $orderDetailsUpdate->address          = $request->address;
+         $orderDetailsUpdate->division_id      = $request->division_id;
+         $orderDetailsUpdate->district_id      = $request->district_id;
+        //  $orderDetailsUpdate->post_code        = $request->post_code;
+         $orderDetailsUpdate->status           = $request->status;
+         $orderDetailsUpdate->admin_note       = $request->admin_note;
+
+
+         $orderDetailsUpdate->save();
+
+         return redirect()->route('order.details' , $orderDetailsUpdate->id);
+
+}
 
     /**
      * Remove the specified resource from storage.

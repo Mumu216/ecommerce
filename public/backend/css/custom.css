@@ -92,3 +92,26 @@
     border: 1px solid #eee;
     padding: 15px;
 }
+
+.change-order-status-title{
+    color: #343a40;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 0;
+
+}
+
+.change-order-status-title .fa-edit{
+    margin-left: 22px;
+    color: green;
+}
+.change-order-status-title a{
+    color: #000;
+    font-size: 14px;
+    font-weight: 400;
+}
+.message-note .alert{
+    min-height: 100px;
+}
