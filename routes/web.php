@@ -43,6 +43,10 @@ Route::group(['prefix' => 'cart'], function(){
 
 
 Route::get('/checkout', 'App\Http\Controllers\Frontend\PagesController@checkout')->name('checkout');
+
+Route::get('get-district/{id}', function($id){
+     return json_encode(App\Models\District::where('division_id', $id)->get());
+});
 Route::get('/customer-login', 'App\Http\Controllers\Frontend\PagesController@login')->name('customer-login');
 
 // customer profile

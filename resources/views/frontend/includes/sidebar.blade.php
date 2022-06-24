@@ -38,57 +38,58 @@
             <a href="#"><span class="badge badge-dark badge-sm badge-pill text-uppercase px-2 py-1 mr-1">Tech</span></a>
             <a href="#"><span class="badge badge-dark badge-sm badge-pill text-uppercase px-2 py-1 mr-1">New</span></a>
         </div>
-        <div class="row mb-5">
-            <div class="col">
-                <h5 class="font-weight-bold pt-5">Top Rated Products</h5>
-                <ul class="simple-post-list">
-                    <li>
-                        <div class="post-image">
-                            <div class="d-block">
-                                <a href="shop-product-sidebar-left.html">
-                                    <img alt="" width="60" height="60" class="img-fluid" src="{{ asset('frontend/img/products/product-grey-1.jpg') }}">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="post-info">
-                            <a href="shop-product-sidebar-left.html">Photo Camera</a>
-                            <div class="post-meta text-dark font-weight-semibold">
-                                $299
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="post-image">
-                            <div class="d-block">
-                                <a href="shop-product-sidebar-left.html">
-                                    <img alt="" width="60" height="60" class="img-fluid" src="{{ asset('frontend/img/products/product-grey-4.jpg') }}">
-                                </a>/product-grey-4.jpg
-                            </div>
-                        </div>
-                        <div class="post-info">
-                            <a href="shop-product-sidebar-left.html">Luxury bag</a>
-                            <div class="post-meta text-dark font-weight-semibold">
-                                $199
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="post-image">
-                            <div class="d-block">
-                                <a href="shop-product-sidebar-left.html">
-                                    <img alt="" width="60" height="60" class="img-fluid" src="{{ asset('frontend/img/products/product-grey-8.jpg') }}">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="post-info">
-                            <a href="shop-product-sidebar-left.html">Military Rucksack</a>
-                            <div class="post-meta text-dark font-weight-semibold">
-                                $49
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </aside>
 </div>
+
+{{-- <div class="row mb-5">
+    <div class="col">
+        <h5 class="font-weight-bold pt-5">Top Rated Products</h5>
+        <ul class="simple-post-list">
+            <li>
+                <div class="post-image">
+                    <div class="d-block">
+                        <a href="shop-product-sidebar-left.html">
+                            <img alt="" width="60" height="60" class="img-fluid" src="{{ asset('frontend/img/products/product-grey-1.jpg') }}">
+                        </a>
+                    </div>
+                </div>
+                <div class="post-info">
+                    <a href="shop-product-sidebar-left.html">Photo Camera</a>
+                    <div class="post-meta text-dark font-weight-semibold">
+                        $299
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="post-image">
+                    <div class="d-block">
+                        <a href="shop-product-sidebar-left.html">
+                            <img alt="" width="60" height="60" class="img-fluid" src="{{ asset('frontend/img/products/product-grey-4.jpg') }}">
+                        </a>/product-grey-4.jpg
+                    </div>
+                </div>
+                <div class="post-info">
+                    <a href="shop-product-sidebar-left.html">Luxury bag</a>
+                    <div class="post-meta text-dark font-weight-semibold">
+                        $199
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="post-image">
+                    <div class="d-block">
+                        <a href="shop-product-sidebar-left.html">
+                            <img alt="" width="60" height="60" class="img-fluid" src="{{ asset('frontend/img/products/product-grey-8.jpg') }}">
+                        </a>
+                    </div>
+                </div>
+                <div class="post-info">
+                    <a href="shop-product-sidebar-left.html">Military Rucksack</a>
+                    <div class="post-meta text-dark font-weight-semibold">
+                        $49
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div> --}}

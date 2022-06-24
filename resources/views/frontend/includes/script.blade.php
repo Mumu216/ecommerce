@@ -113,3 +113,24 @@
         "hideMethod": "fadeOut"
         }
     </script>
+
+    <!-- division selection and District list show process-->
+    <script type="text/javascript">
+
+        $('#division_id').change(function(){
+           var division = $('#division_id').val();
+
+           $('#district_names').html("");
+           var option = "";
+
+           $.get( "http://127.0.0.1:8000/get-district/" + division, function( data ) {
+             data = JSON.parse(data);
+             data.forEach(function(element){
+                 option += "<option value='" + element.id + "'>" + element.district_name + "</option>";
+             });
+             $('#district_names').html(option);
+          });
+
+        });
+
+    </script>

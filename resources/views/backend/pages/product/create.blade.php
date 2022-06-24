@@ -100,7 +100,7 @@
                             </div>
 
 
-                            <div class="row">
+                              <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label>Main Thimbnail Image (*)</label>

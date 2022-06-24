@@ -26,7 +26,8 @@ class PagesController extends Controller
      */
     public function homepage()
     {
-        return view('frontend.pages.homepage');
+        $latest_products = Product::orderBy('id' , 'desc')->get();
+        return view('frontend.pages.homepage', compact('latest_products'));
     }
 
      /**

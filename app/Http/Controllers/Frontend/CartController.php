@@ -114,10 +114,10 @@ class CartController extends Controller
          {
              $cart->quantity   =$request->quantity;
              $cart->save();
-             return redirect()->back();
+             return redirect()->back('homepage');
          }
              else{
-                 return redirect()->back();
+                 return redirect()->back('homepage');
              }
 
 

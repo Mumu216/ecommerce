@@ -60,19 +60,18 @@
                                                 <div class="form-row">
                                                     <div class="form-group col">
 														<label class="font-weight-bold text-dark text-2">Division</label>
-														 <select class="form-control" name="division_id">
+														 <select class="form-control" name="division_id"  id="division_id">
                                                           <option>Please Select Your Division</option>
                                                           @foreach($divisions as $division)
                                                             <option value="{{ $division->id }}">{{ $division->name }}</option>
                                                           @endforeach
                                                         </select>
 													</div>
-                                                </div>
 
-                                                <div class="form-row">
+
                                                     <div class="form-group col">
 														<label class="font-weight-bold text-dark text-2">District</label>
-														 <select class="form-control" name="district_id">
+														 <select class="form-control" name="district_id" id="district_names">
                                                            <option>Please Select Your District</option>
                                                            @foreach( $districts as $district)
                                                              <option value="{{ $district->id }}">{{ $district->district_name}}</option>

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Frontend;
-
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -50,7 +49,7 @@ class CustomerController extends Controller
     {
         $user= User::find($id);
         $user->name          = $request->name;
-       // $user->email         = $request->email;
+        $user->email         = $request->email;
         $user->phone         = $request->phone;
         $user->address       = $request->address;
         $user->city          = $request->city;

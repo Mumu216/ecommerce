@@ -2,9 +2,7 @@
 
 @section('body-content')
 
-
-
-			<div role="main" class="main shop py-4">
+           <div role="main" class="main shop py-4">
 
 				<div class="container">
 
